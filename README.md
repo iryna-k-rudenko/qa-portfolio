@@ -1,6 +1,6 @@
 # QA Portfolio
 
-This repository contains examples of my QA documentation created as part of my learning and practice in software testing and Git workflow.
+This repository contains examples of QA documentation created as part of my manual testing practice and Git/GitHub workflow learning.
 
 ## 📌 Contents
 
@@ -29,15 +29,14 @@ Realistic bug reports based on typical web application issues, including:
 ## 🛠 Skills Demonstrated
 
 - Writing clear and structured test cases
-- Creating concise and actionable bug reports
-- Identifying UI/UX and functional issues
-- Understanding of client-side behavior and event tracking
-- Working with cookies and browser DevTools
-- Git workflow:
-  - branching
-  - commits
-  - pull requests
-  - merging
+- Creating actionable bug reports
+- Defining steps to reproduce, actual result, and expected result
+- Prioritizing bugs by impact
+- Categorizing bugs by Development and Design areas
+- Testing responsive layouts
+- Checking validation behavior
+- Working with cookies in browser DevTools
+- Using Git branches, commits, pull requests, and merges
 
 ---
 
@@ -59,6 +58,7 @@ No sensitive or proprietary data is used.
 
 ## 🚀 Future Improvements
 
-- API testing examples (Postman)
-- Test plans and checklists
-- Automation examples (Selenium / Playwright)
+- API testing examples with Postman
+- Checklists
+- Test plans
+- Basic automation examples
