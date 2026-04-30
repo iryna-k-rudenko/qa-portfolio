@@ -1,1 +1,17 @@
+# macOS
 .DS_Store
+
+# Logs
+*.log
+
+# Temp files
+*.tmp
+
+# VS Code
+.vscode/
+
+# Node (на будущее, вдруг будет)
+node_modules/
+
+# OS files
+Thumbs.db
