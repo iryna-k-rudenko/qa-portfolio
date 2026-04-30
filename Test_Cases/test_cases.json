@@ -1,106 +1,143 @@
 [
   {
     "id": "TC-001",
-    "title": "Verify successful registration with valid data",
+    "title": "Verify successful registration flow with valid data",
     "priority": "High",
-    "type": "Functional",
     "preconditions": [
       "Landing page is opened",
-      "User is not registered",
-      "Cookies and local storage are cleared"
+      "Cookies are cleared",
+      "User is not registered"
     ],
     "steps": [
-      "Select gender on Step 1",
-      "Select a valid date of birth with age 18+ on Step 2",
-      "Enter a valid nickname on Step 3",
-      "Select one body type option on Step 4",
-      "Enter a valid email address on Step 4",
-      "Select one relationship goal on Step 5",
-      "Enter a valid password with at least 5 characters",
-      "Accept Terms and Policies checkbox",
-      "Click Next"
+      {
+        "step": 1,
+        "action": "Click 'Next' on the intro screen"
+      },
+      {
+        "step": 2,
+        "action": "Select gender"
+      },
+      {
+        "step": 3,
+        "action": "Select a valid date of birth with age 18+"
+      },
+      {
+        "step": 4,
+        "action": "Enter a valid name or nickname"
+      },
+      {
+        "step": 5,
+        "action": "Enter a valid email address"
+      },
+      {
+        "step": 6,
+        "action": "Enter a valid password with at least 5 characters and accept the Terms and Policies checkbox"
+      },
+      {
+        "step": 7,
+        "action": "Click 'Next'"
+      }
     ],
-    "expected_result": "User successfully completes the landing registration flow and is redirected to the next expected page without validation errors."
+    "expected_result": "User successfully completes the registration flow and is redirected to the next expected page without validation errors."
   },
   {
     "id": "TC-002",
-    "title": "Verify validation for empty required fields",
+    "title": "Verify validation messages for empty required fields",
     "priority": "High",
-    "type": "Validation",
     "preconditions": [
       "Landing page is opened",
-      "User is on steps with required input fields"
+      "User is on a step with a required input field"
     ],
     "steps": [
-      "Go to Step 3 and leave the name field empty",
-      "Click Next",
-      "Go to Step 4 and leave the email field empty",
-      "Click Next",
-      "Go to Step 5 and leave the password field empty",
-      "Click Next"
+      {
+        "step": 1,
+        "action": "Go to Step 4 and leave the name field empty"
+      },
+      {
+        "step": 2,
+        "action": "Click 'Next'"
+      },
+      {
+        "step": 3,
+        "action": "Go to Step 5 and leave the email field empty"
+      },
+      {
+        "step": 4,
+        "action": "Click 'Next'"
+      },
+      {
+        "step": 5,
+        "action": "Go to Step 6 and leave the password field empty"
+      },
+      {
+        "step": 6,
+        "action": "Click 'Next'"
+      }
     ],
-    "expected_result": "Validation messages are displayed for all empty required fields: name, email, and password. User cannot proceed until valid data is entered."
+    "expected_result": "Correct validation messages are displayed for empty required fields. User cannot proceed until valid data is entered."
   },
   {
     "id": "TC-003",
-    "title": "Verify single-choice behavior for option blocks",
-    "priority": "Medium",
-    "type": "Functional",
+    "title": "Verify validation for invalid date of birth",
+    "priority": "High",
     "preconditions": [
       "Landing page is opened",
-      "User is on Step 4 or Step 5"
+      "User is on Step 3"
     ],
     "steps": [
-      "On Step 4, select any body type option",
-      "Select another body type option",
-      "Observe selected options",
-      "On Step 5, select any relationship goal option",
-      "Select another relationship goal option",
-      "Observe selected options"
+      {
+        "step": 1,
+        "action": "Select a non-existing date of birth, for example November 31"
+      },
+      {
+        "step": 2,
+        "action": "Click 'Next'"
+      }
     ],
-    "expected_result": "Only one option can be selected at a time in each option block. When a new option is selected, the previous selection is automatically unselected."
+    "expected_result": "User cannot proceed with a non-existing date of birth. A relevant validation message is displayed."
   },
   {
     "id": "TC-004",
-    "title": "Verify wizardAnswers cookie values after selecting landing answers",
-    "priority": "High",
-    "type": "Functional",
+    "title": "Verify only one option can be selected in single-choice blocks",
+    "priority": "Medium",
     "preconditions": [
       "Landing page is opened",
-      "DevTools Application tab is available",
-      "Cookies are cleared before testing"
+      "User is on Step 2 or any other step with single-choice options"
     ],
     "steps": [
-      "Go to Step 4",
-      "Select 'Athletic' body type option",
-      "Open DevTools > Application > Cookies",
-      "Check the wizardAnswers cookie",
-      "Go to Step 5",
-      "Select 'Casual chats' relationship goal option",
-      "Check the wizardAnswers cookie again"
+      {
+        "step": 1,
+        "action": "Select one option"
+      },
+      {
+        "step": 2,
+        "action": "Select another option from the same block"
+      }
     ],
-    "expected_result": "The wizardAnswers cookie is created and contains correctly encoded values for selected answers. Body type value corresponds to the selected option id, and join reasons value corresponds to the selected option id."
+    "expected_result": "Only one option remains selected. Previously selected option is automatically unselected."
   },
   {
     "id": "TC-005",
-    "title": "Verify footer and policy links are displayed and clickable",
-    "priority": "Medium",
-    "type": "UI/Functional",
+    "title": "Verify required policy links in footer and consent checkbox",
+    "priority": "High",
     "preconditions": [
       "Landing page is opened",
-      "Footer is visible according to page behavior"
+      "User is on Step 6"
     ],
     "steps": [
-      "Scroll to the footer area",
-      "Check that required policy links are displayed",
-      "Click Terms of Use link",
-      "Return to the landing page",
-      "Click Privacy Policy link",
-      "Return to the landing page",
-      "Click Cookie Policy link",
-      "Return to the landing page",
-      "Click Billing Policy, Refund Policy, and Contact Us links"
+      {
+        "step": 1,
+        "action": "Check the policy links in the footer"
+      },
+      {
+        "step": 2,
+        "action": "Check the policy links near the Terms and Policies checkbox"
+      },
+      {
+        "step": 3,
+        "action": "Click each policy link"
+      }
     ],
-    "expected_result": "All required footer links are visible, clickable, and redirect user to the correct pages without broken links or layout issues."
+    "expected_result": "All required policy links are displayed, correctly formatted, clickable, and lead to the correct pages."
   }
 ]

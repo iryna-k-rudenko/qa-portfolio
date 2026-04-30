@@ -1,77 +1,125 @@
 [
   {
     "id": "BR-001",
-    "summary": "Footer overlaps interactive elements blocking user actions",
+    "summary": "Footer overlaps page elements on small viewports",
     "priority": "Highest",
+    "category": "Development",
     "environment": "Mobile devices and small viewport heights",
-    "description": "On multiple steps, the footer overlaps key interactive elements such as buttons, input fields, and checkboxes, making them partially or fully inaccessible. Scrolling is not possible, which blocks the user from completing the flow.",
+    "description": "Depending on screen resolution, footer overlaps page elements such as navigation buttons, input fields, or checkbox area. Scrolling is not available, so affected elements remain inaccessible.",
     "steps_to_reproduce": [
-      "Open landing page",
-      "Proceed to any step with input fields or buttons",
-      "Use a device with small viewport height (e.g. iPhone SE)",
-      "Observe the bottom part of the screen"
+      {
+        "step": 1,
+        "action": "Open the landing page on a device with small viewport height"
+      },
+      {
+        "step": 2,
+        "action": "Navigate through the landing steps"
+      },
+      {
+        "step": 3,
+        "action": "Observe the bottom part of the page"
+      }
     ],
-    "actual_result": "Footer overlays interactive elements. User cannot click or interact with them. Scrolling is not available.",
-    "expected_result": "Footer should not overlap interactive elements. All elements must remain accessible and visible.",
-    "notes": "Reproducible across multiple steps and devices depending on screen resolution."
+    "actual_result": "Footer overlaps page elements. Navigation buttons, input fields, or checkbox area may be partially or fully hidden under the footer.",
+    "expected_result": "Footer should not overlap page content. All page elements must remain fully visible and accessible on all supported viewport sizes.",
+    "notes": "Issue may reproduce on different steps depending on device resolution."
   },
   {
     "id": "BR-002",
-    "summary": "Cookie widget layout does not match design on mobile",
-    "priority": "High",
-    "environment": "Mobile devices",
-    "description": "Cookie widget is displayed incorrectly: text and button are visually centered instead of being aligned to opposite sides. The widget appears larger and less compact than expected.",
+    "summary": "wizardAnswers cookie stores raw JSON instead of encoded value",
+    "priority": "Highest",
+    "category": "Development",
+    "environment": "All environments",
+    "description": "The wizardAnswers cookie stores selected answers as raw JSON instead of an encoded value. This format may break payment flow when the cookie is passed further.",
     "steps_to_reproduce": [
-      "Open landing page on mobile device",
-      "Observe cookie widget on Step 1"
+      {
+        "step": 1,
+        "action": "Open the landing page"
+      },
+      {
+        "step": 2,
+        "action": "Complete steps that save answers to wizardAnswers cookie"
+      },
+      {
+        "step": 3,
+        "action": "Open DevTools > Application > Cookies"
+      },
+      {
+        "step": 4,
+        "action": "Check the wizardAnswers cookie value"
+      }
     ],
-    "actual_result": "Text and button are centered. Layout does not match design.",
-    "expected_result": "Text should be aligned to the left and button to the right as per design.",
-    "notes": "Inherited from previous landing implementation."
+    "actual_result": "wizardAnswers cookie value is stored as raw JSON.",
+    "expected_result": "wizardAnswers cookie value should be encoded before being stored.",
+    "notes": "Correct encoded format is required to prevent issues on the payment page."
   },
   {
     "id": "BR-003",
-    "summary": "Cookie value is stored as raw JSON causing potential payment page failure",
-    "priority": "Highest",
-    "environment": "All environments",
-    "description": "The wizardAnswers cookie stores values as raw JSON instead of encoded format. This may break payment page functionality when the cookie is passed further.",
+    "summary": "Incorrect validation messages on input steps",
+    "priority": "High",
+    "category": "Development",
+    "environment": "All devices",
+    "description": "Validation messages on name, email, and password steps do not match expected text.",
     "steps_to_reproduce": [
-      "Complete steps with selectable answers",
-      "Open DevTools → Application → Cookies",
-      "Find wizardAnswers cookie",
-      "Check its value"
+      {
+        "step": 1,
+        "action": "Go to Step 4 and submit an empty or too short name"
+      },
+      {
+        "step": 2,
+        "action": "Go to Step 5 and submit an empty or invalid email"
+      },
+      {
+        "step": 3,
+        "action": "Go to Step 6 and submit an empty or too short password"
+      }
     ],
-    "actual_result": "Cookie value is stored as raw JSON string.",
-    "expected_result": "Cookie value should be properly encoded (e.g. URL-encoded) before being stored.",
-    "notes": "Correct implementation observed on updated yellow landings."
+    "actual_result": "Validation messages have incorrect wording.",
+    "expected_result": "Validation messages should match expected texts exactly: 'Please enter your name', 'Your name should have at least 2 letters', 'Please enter your email address', 'Please enter a valid email address', 'Please enter your password', 'Your password must be at least 5 characters long'."
   },
   {
     "id": "BR-004",
-    "summary": "Duplicate user_screen_resolution event logged in console",
-    "priority": "Medium",
-    "environment": "Desktop browser",
-    "description": "When opening or refreshing the page, the user_screen_resolution event is logged twice in the console, while only one request is sent in the network tab.",
+    "summary": "Required policy links are missing in footer",
+    "priority": "High",
+    "category": "Development",
+    "environment": "All devices",
+    "description": "Footer does not contain all required policy links.",
     "steps_to_reproduce": [
-      "Open landing page",
-      "Open DevTools → Console",
-      "Refresh the page"
+      {
+        "step": 1,
+        "action": "Open the landing page"
+      },
+      {
+        "step": 2,
+        "action": "Scroll to the footer or open any step where footer is visible"
+      },
+      {
+        "step": 3,
+        "action": "Check displayed policy links"
+      }
     ],
-    "actual_result": "Event appears twice in console logs.",
-    "expected_result": "Event should be logged only once.",
-    "notes": "Does not affect network requests but may indicate duplicated logic."
+    "actual_result": "Some required policy links are missing from the footer.",
+    "expected_result": "Footer should contain all required policy links: Terms of Use, Privacy Policy, Cookie Policy, Billing Policy, Refund Policy, and Contact Us."
   },
   {
     "id": "BR-005",
-    "summary": "Grammar mistake in cookie widget text",
-    "priority": "Highest",
-    "environment": "Desktop and mobile",
-    "description": "Cookie widget text contains a grammatical error: 'If you continue to use this site we will assume that you are happy with it.' is missing punctuation or spacing.",
+    "summary": "Cookie widget layout does not match design on mobile",
+    "priority": "Medium",
+    "category": "Design",
+    "environment": "Mobile devices",
+    "description": "Cookie widget on Step 1 is visually larger than expected and its content layout does not match the design.",
     "steps_to_reproduce": [
-      "Open landing page",
-      "Observe cookie widget text"
+      {
+        "step": 1,
+        "action": "Open the landing page on a mobile device"
+      },
+      {
+        "step": 2,
+        "action": "Observe Cookie Widget on Step 1"
+      }
     ],
-    "actual_result": "Text contains grammatical or formatting issue.",
-    "expected_result": "Text should be grammatically correct and properly formatted.",
-    "notes": "Observed on multiple landings (e.g. am33, am38)."
+    "actual_result": "Cookie Widget is oversized, and the 'Agree & Close' button is displayed in one row with the text.",
+    "expected_result": "Cookie Widget should be compact and match the mobile design. The button should be displayed below the text as designed.",
+    "notes": "Issue is inherited from the source landing."
   }
 ]
